@@ -13,5 +13,6 @@ public class ObjFromStream : MonoBehaviour {
         //create stream and load
         var textStream = new MemoryStream(Encoding.UTF8.GetBytes(www.text));
         var loadedObj = new OBJLoader().Load(textStream);
-	}
+        
+    }
 }

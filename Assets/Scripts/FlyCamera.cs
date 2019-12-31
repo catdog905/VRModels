@@ -14,7 +14,7 @@ public class FlyCamera : MonoBehaviour
     void Update()
     {
         float x = Input.GetAxis("Horizontal") * 0.1f;
-        float y = 0.0f;
+        float y = Input.GetAxis("UpDown") * 0.1f; 
         float z = Input.GetAxis("Vertical") * 0.1f;
 
         if (Input.GetMouseButton(1))
