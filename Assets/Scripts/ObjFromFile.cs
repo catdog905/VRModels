@@ -1,6 +1,7 @@
 ﻿using Dummiesman;
 using System.IO;
 using UnityEngine;
+using SFB;
 
 public class ObjFromFile : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class ObjFromFile : MonoBehaviour
     GameObject loadedObject;
 
     void OnGUI() {
-        objPath = GUI.TextField(new Rect(0, 0, 256, 32), objPath);
 
-        GUI.Label(new Rect(0, 0, 256, 32), "");
-        if(GUI.Button(new Rect(256, 32, 64, 32), "Load File"))
+       
+        if(GUI.Button(new Rect(0, 0, 64, 32), "Load File"))
         {
             //file path
+            var extensions = new[] {
+                new ExtensionFilter("Model files", "obj" ),
+                new ExtensionFilter("All Files", "*" ),
+            };
+            objPath = StandaloneFileBrowser.OpenFilePanel("Open File", "", extensions, true)[0];
             if (!File.Exists(objPath))
             {
                 error = "File doesn't exist.";
