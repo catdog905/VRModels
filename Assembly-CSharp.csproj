@@ -68,6 +68,9 @@
      <Compile Include="Assets\OBJImport\TextureLoader\ImageLoaderHelper.cs" />
      <Compile Include="Assets\OBJImport\TextureLoader\ImageUtils.cs" />
      <Compile Include="Assets\OBJImport\TextureLoader\TGALoader.cs" />
+     <Compile Include="Assets\RTS_Camera\Demo\DemoScene.cs" />
+     <Compile Include="Assets\RTS_Camera\Demo\TargetSelector.cs" />
+     <Compile Include="Assets\RTS_Camera\Scripts\RTS_Camera.cs" />
      <Compile Include="Assets\Scripts\FixFonts.cs" />
      <Compile Include="Assets\Scripts\FlyCamera.cs" />
      <Compile Include="Assets\Scripts\FPSInput.cs" />
@@ -90,6 +93,9 @@
      <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserLinux.cs" />
      <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserMac.cs" />
      <Compile Include="Assets\StandaloneFileBrowser\StandaloneFileBrowserWindows.cs" />
+     <None Include="Assets\RTS_Camera\Demo\Projectors\Guidelines.txt" />
+     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorLight.shader" />
+     <None Include="Assets\RTS_Camera\Demo\Projectors\Shaders\ProjectorMultiply.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/ruca/Documents/VRModels/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -306,6 +312,12 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.13f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="Ookii.Dialogs">
+ <HintPath>C:/Users/ruca/Documents/VRModels/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Windows.Forms">
+ <HintPath>C:/Users/ruca/Documents/VRModels/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>C:/Users/ruca/Documents/VRModels/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
@@ -314,12 +326,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>C:/Users/ruca/Documents/VRModels/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="Ookii.Dialogs">
- <HintPath>C:/Users/ruca/Documents/VRModels/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
- </Reference>
- <Reference Include="System.Windows.Forms">
- <HintPath>C:/Users/ruca/Documents/VRModels/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.13f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -6,28 +6,48 @@ using System.Collections;
 public class OrbitCamera : MonoBehaviour {
 	[SerializeField] private Transform target;
 
-	public float rotSpeed = 1.5f;
+    public Vector3 offset;
+    public float sensitivity = 3; // чувствительность мышки
+    public float top_limit = 80; // ограничение вращения по Y
+    public float bottom_limit = 10; // ограничение вращения по Y
+    public float zoom = 0.25f; // чувствительность при увеличении, колесиком мышки
+    public float zoomMax = 10; // макс. увеличение
+    public float zoomMin = 3; // мин. увеличение
+    public float move_speed = 50; // мин. увеличение
+    private float X, Y;
 
-	private float _rotY;
-	private Vector3 _offset;
+    void Start()
+    {
+        top_limit = Mathf.Abs(top_limit);
+        if (top_limit > 90) top_limit = 90;
+        bottom_limit = Mathf.Abs(bottom_limit);
+        if (bottom_limit > 90) bottom_limit = 90;
+        offset = new Vector3(offset.x, offset.y, -Mathf.Abs(zoomMax) / 2);
+        transform.position = target.position + offset;
+    }
 
-	// Use this for initialization
-	void Start() {
-		_rotY = transform.eulerAngles.y;
-		_offset = target.position - transform.position;
-	}
-	
-	// Update is called once per frame
-	void LateUpdate() {
-		float horInput = Input.GetAxis("Horizontal");
-		if (horInput != 0) {
-			_rotY += horInput * rotSpeed;
-		} else {
-			_rotY += Input.GetAxis("Mouse X") * rotSpeed * 3;
-		}
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0) offset.z += zoom;
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0) offset.z -= zoom;
+            offset.z = Mathf.Clamp(offset.z, -Mathf.Abs(zoomMax), -Mathf.Abs(zoomMin));
 
-		Quaternion rotation = Quaternion.Euler(0, _rotY, 0);
-		transform.position = target.position - (rotation * _offset);
-		transform.LookAt(target);
-	}
+            X = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
+            Y += Input.GetAxis("Mouse Y") * sensitivity * -1;
+            Y = Mathf.Clamp(Y, 10, 90);
+            transform.localEulerAngles = new Vector3(Y, X, 0);
+            transform.position = transform.localRotation * offset + target.position;
+        }
+        else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            float old_height = transform.position.y;
+            Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            transform.Translate(direction * move_speed * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x, old_height, transform.position.z);
+        }
+    }
+
+    
 }
